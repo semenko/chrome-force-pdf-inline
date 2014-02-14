@@ -1,7 +1,7 @@
 /*
 Force PDFs to render inline in Chrome.
 
-WARNING: This has significant security implications. If you don't understand why, do NOT install this extension.
+WARNING: This may have significant security implications. If you don't understand why, do NOT install this extension.
 
 Author: Nick Semenkovich <semenko@alum.mit.edu>
 License: MIT
@@ -10,7 +10,7 @@ License: MIT
 var rule = {
     conditions: [
 		 new chrome.declarativeWebRequest.RequestMatcher({
-			 resourceType: ['main_frame'],
+			 resourceType: ['main_frame'], // Only rewrite if the PDF is the whole window, not some iframe, etc.
 			 contentType: ['application/pdf'],
 			 responseHeaders: [{nameEquals: 'Content-Disposition', valueContains: 'attachment'}],
 			 stages: ["onHeadersReceived"]
@@ -28,19 +28,18 @@ function addRule() {
     chrome.declarativeWebRequest.onRequest.addRules([rule]);
 }
 
-// Remove all rules, then add (or re-add) our rule.
-// This applies after an update/version bump, etc.
+// Thisr runs on first install & after version updates, etc.
 function setup() {
-    // Remove all rules and add ours
+    // Remove all rules and add ours back in.
     chrome.declarativeWebRequest.onRequest.removeRules(null,
 						       function() {
-							   if (chrome.runtime.lastError) {
-							       console.error('Error clearing rules: ' + chrome.runtime.lastError);
-							   } else {
-							       addRule();
-							   }
+    							   if (chrome.runtime.lastError) {
+	    						       console.error('Error clearing rules: ' + chrome.runtime.lastError);
+		    					   } else {
+    							       addRule();
+			    				   }
 						       });
-};
+}
 
 // Set some onInstalled listeners to fire, since we're not a persistent background page.
 chrome.runtime.onInstalled.addListener(setup);
