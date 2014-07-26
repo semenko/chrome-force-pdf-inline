@@ -5,7 +5,7 @@
 
  Author: Nick Semenkovich <semenko@alum.mit.edu> | https://nick.semenkovich.com/
  License: MIT
- */
+*/
 
 var rule = {
     conditions: [
