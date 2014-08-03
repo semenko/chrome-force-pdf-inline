@@ -19,8 +19,6 @@ var rule = {
             resourceType: ['main_frame'], // Only rewrite if the PDF is the whole window, not some iframe, etc.
             contentType: ['application/octet-stream'],
             responseHeaders: [
-                {nameEquals: 'Content-Disposition', valueContains: 'attachment'}, // TODO: Check these are evaluated as "and"
-                {nameEquals: 'Content-Disposition', valueContains: 'filename='}, // TODO: Make this a different ruleset?
                 {nameEquals: 'Content-Disposition', valueContains: '.pdf'}
             ],
             stages: ["onHeadersReceived"]
