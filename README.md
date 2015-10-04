@@ -18,6 +18,6 @@ Install this app from the [Chrome store](https://chrome.google.com/webstore/deta
 + https://nick.semenkovich.com/
 
 ## License
-Copyright 2014, Nick Semenkovich \<semenko@alum.mit.edu\>.
+Copyright 2014-2015, Nick Semenkovich \<semenko@alum.mit.edu\>.
 
 Released under the MIT License. See LICENSE for details.
