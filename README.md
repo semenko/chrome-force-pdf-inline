@@ -6,6 +6,16 @@ A Chrome extension to force PDFs to render inline (overrides Content-Disposition
 This prevents PDFs from saving & downloading instead of simply opening in Chrome.
 
 
+## Versions
+
+There are two version of this extension:
+
+- The declarativeWebRequest (DWR) version, which uses an API only available in the beta/dev channels of Chrome.
+This is lean, and works as an event page.
+
+- The legacy blockingWebRequest version, which works on the Stable channel of Chrome, but uses an annoying blocking
+request handler and an always in-memory background page.
+
 
 ## Installation
 
