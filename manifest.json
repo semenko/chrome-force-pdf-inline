@@ -12,8 +12,6 @@
     "name": "Render PDFs Inline",
     "permissions": [
         "declarativeWebRequest",
-        "webRequest",
-        "webRequestBlocking",
         "*://*/*"
     ],
     "icons": {
@@ -21,5 +19,5 @@
         "48": "icons/icon48.png",
         "128": "icons/icon128.png"
     },
-    "version": "2015.10.03"
+    "version": "2014.8.1"
 }
