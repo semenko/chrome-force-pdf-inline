@@ -23,10 +23,11 @@ chrome.webRequest.onHeadersReceived.addListener(
                     console.log('Injecting Content-Disposition inline header for:', details);
                     break;
                 case 'content-type':
-                    // This might break stuff, but if you name your file PDF, we're gonna force it to be a PDF.
-                    // "Whoops"
-                    header.value = "application/pdf";
-                    console.log('Injecting Content-Type PDF header for:', details);
+                    if (header.value.indexOf('application/octet-stream') !== -1) {
+                        // This might break stuff, but if you name your file PDF, we're gonna force it to be a PDF.
+                        header.value = header.value.replace('application/octet-stream', 'application/pdf');
+                        console.log('Injecting Content-Type PDF header for:', details);
+                    }
                     break;
             }
         });
