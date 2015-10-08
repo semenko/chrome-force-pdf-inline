@@ -7,9 +7,9 @@
     },
     "author": "Nick Semenkovich",
     "content_security_policy": "script-src 'self'; object-src 'self'",
-    "description": "Force PDFs to render inline instead of downloading (using a slower API that works on Chrome's Stable Channel). By Nick Semenkovich <semenko@alum.mit.edu>",
+    "description": "Force PDFs to render inline instead of downloading (using a slower API for Chrome's Stable Channel). By Nick Semenkovich <semenko@alum.mit.edu>",
     "manifest_version": 2,
-    "name": "Render PDFs Inline (for Stable Channel)",
+    "name": "Render PDFs Inline (for Stable Chrome)",
     "permissions": [
         "webRequest",
         "webRequestBlocking",
@@ -20,5 +20,5 @@
         "48": "icons/icon48.png",
         "128": "icons/icon128.png"
     },
-    "version": "2015.10.07"
+    "version": "2015.10.8"
 }

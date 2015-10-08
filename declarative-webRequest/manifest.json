@@ -7,9 +7,9 @@
     },
     "author": "Nick Semenkovich",
     "content_security_policy": "script-src 'self'; object-src 'self'",
-    "description": "Force PDFs to render inline instead of downloading (works on Chrome's Beta and Dev channels). By Nick Semenkovich <semenko@alum.mit.edu>",
+    "description": "Force PDFs to render inline instead of downloading (for Chrome's Beta & Dev channels). By Nick Semenkovich <semenko@alum.mit.edu>",
     "manifest_version": 2,
-    "name": "Render PDFs Inline (for Beta and Dev Channels)",
+    "name": "Render PDFs Inline (for Beta & Dev Channels)",
     "permissions": [
         "declarativeWebRequest",
         "*://*/*"
@@ -19,5 +19,5 @@
         "48": "icons/icon48.png",
         "128": "icons/icon128.png"
     },
-    "version": "2015.10.08"
+    "version": "2015.10.8"
 }
