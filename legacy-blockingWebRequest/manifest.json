@@ -7,7 +7,7 @@
     },
     "author": "Nick Semenkovich",
     "content_security_policy": "script-src 'self'; object-src 'self'",
-    "description": "Force PDFs to render inline instead of downloading, using the slower webRequestBlocking API. By Nick Semenkovich <semenko@alum.mit.edu>",
+    "description": "Force PDFs to render inline instead of downloading (using a slower API that works on Chrome's Stable Channel). By Nick Semenkovich <semenko@alum.mit.edu>",
     "manifest_version": 2,
     "name": "Render PDFs Inline",
     "permissions": [
