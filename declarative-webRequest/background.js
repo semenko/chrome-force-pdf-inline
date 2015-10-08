@@ -5,21 +5,29 @@
 
  Author: Nick Semenkovich <semenko@alum.mit.edu> | https://nick.semenkovich.com/
  License: MIT
-*/
+ */
 
 var rule = {
     conditions: [
         new chrome.declarativeWebRequest.RequestMatcher({
-            resourceType: ['main_frame'], // Only rewrite if the PDF is the whole window, not some iframe, etc.
+            resourceType: ['main_frame', 'sub_frame'], // Only rewrite if the PDF is the whole window or a subframe.
             contentType: ['application/pdf'],
             responseHeaders: [{nameEquals: 'Content-Disposition', valueContains: 'attachment'}],
             stages: ["onHeadersReceived"]
         }),
         new chrome.declarativeWebRequest.RequestMatcher({
-            resourceType: ['main_frame'], // Only rewrite if the PDF is the whole window, not some iframe, etc.
+            resourceType: ['main_frame', 'sub_frame'],
             contentType: ['application/octet-stream'],
             responseHeaders: [
                 {nameEquals: 'Content-Disposition', valueContains: '.pdf'}
+            ],
+            stages: ["onHeadersReceived"]
+        }),
+        new chrome.declarativeWebRequest.RequestMatcher({
+            resourceType: ['main_frame', 'sub_frame'],
+            contentType: ['application/octet-stream'],
+            url: [
+                {pathSuffix: ".pdf"}  // Override application/octet-stream if .pdf is the URL suffix
             ],
             stages: ["onHeadersReceived"]
         })
@@ -28,7 +36,7 @@ var rule = {
         new chrome.declarativeWebRequest.RemoveResponseHeader({name: 'Content-Disposition'}),
         new chrome.declarativeWebRequest.AddResponseHeader({name: 'Content-Disposition', value: 'inline'}),
         new chrome.declarativeWebRequest.RemoveResponseHeader({name: 'Content-Type'}),
-        new chrome.declarativeWebRequest.AddResponseHeader({name: 'Content-Type', value: 'application/pdf'}),
+        new chrome.declarativeWebRequest.AddResponseHeader({name: 'Content-Type', value: 'application/pdf'})
         // Uncomment for debug logging. See bottom of this file for the listener.
         // new chrome.declarativeWebRequest.SendMessageToExtension({message: 'Rewriting PDF header.'})
     ]};
