@@ -5,8 +5,39 @@
 
  Author: Nick Semenkovich <semenko@alum.mit.edu> | https://nick.semenkovich.com/
  License: MIT
-*/
+ */
 
+chrome.webRequest.onHeadersReceived.addListener(
+    function(details) {
+        console.log(details);
+        var responseHeaders = details.responseHeaders;
+        console.log(responseHeaders);
+        responseHeaders.forEach(function(header){
+            switch(header.name.toLowerCase()) {
+                case 'content-disposition':
+                    if (header.name.toLowerCase() == 'content-disposition') {
+                        header.value = header.value.replace('attachment;', 'inline;');
+                        console.log('Injecting inline header for:', details)
+                    }
+                    break;
+            }
+        });
+        return {responseHeaders: responseHeaders};
+    },
+    // Rather than intercept and parse all headers for content-type (slow, but catches ~everything)
+    // we prefer to catch only PDF named files, as a faster best-effort for inline.
+    {urls: ["*://*/*.pdf",
+	    "*://*/*.Pdf",
+	    "*://*/*.pDf",
+	    "*://*/*.pdF",
+	    "*://*/*.PDf",
+	    "*://*/*.PdF",
+	    "*://*/*.pDF",
+	    "*://*/*.PDF"]},
+    ["blocking", "responseHeaders"]
+);
+
+/*
 var rule = {
     conditions: [
         new chrome.declarativeWebRequest.RequestMatcher({
@@ -53,7 +84,10 @@ function setup() {
 
 // Set some onInstalled listeners to fire, since we're not a persistent background page.
 chrome.runtime.onInstalled.addListener(setup);
+/*
 
+
+ */
 // Enable this line (and the rule to SendMessage) if you're debugging.
 // chrome.declarativeWebRequest.onMessage.addListener(function callback(details) { console.log(details.message + ' ' + details.stage + ' ' + details.requestId); });
 
