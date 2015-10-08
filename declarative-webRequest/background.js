@@ -26,9 +26,7 @@ var rule = {
         new chrome.declarativeWebRequest.RequestMatcher({
             resourceType: ['main_frame', 'sub_frame'],
             contentType: ['application/octet-stream'],
-            url: [
-                {pathSuffix: ".pdf"}  // Override application/octet-stream if .pdf is the URL suffix
-            ],
+            url: {pathSuffix: ".pdf"},  // Override application/octet-stream if .pdf is the URL suffix
             stages: ["onHeadersReceived"]
         })
     ],
