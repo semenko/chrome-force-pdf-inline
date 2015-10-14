@@ -10,13 +10,13 @@
 var rule = {
     conditions: [
         new chrome.declarativeWebRequest.RequestMatcher({
-            resourceType: ['main_frame', 'sub_frame'], // Only rewrite if the PDF is the whole window or a subframe.
+            resourceType: ['main_frame'], // Only rewrite if the PDF is the whole window
             contentType: ['application/pdf'],
             responseHeaders: [{nameEquals: 'Content-Disposition', valueContains: 'attachment'}],
             stages: ["onHeadersReceived"]
         }),
         new chrome.declarativeWebRequest.RequestMatcher({
-            resourceType: ['main_frame', 'sub_frame'],
+            resourceType: ['main_frame'],
             contentType: ['application/octet-stream'],
             responseHeaders: [
                 {nameEquals: 'Content-Disposition', valueContains: '.pdf'}
@@ -24,7 +24,7 @@ var rule = {
             stages: ["onHeadersReceived"]
         }),
         new chrome.declarativeWebRequest.RequestMatcher({
-            resourceType: ['main_frame', 'sub_frame'],
+            resourceType: ['main_frame'],
             contentType: ['application/octet-stream'],
             url: {pathSuffix: ".pdf"},  // Override application/octet-stream if .pdf is the URL suffix
             stages: ["onHeadersReceived"]

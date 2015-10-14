@@ -44,7 +44,7 @@ chrome.webRequest.onHeadersReceived.addListener(
             "*://*/*.PdF",
             "*://*/*.pDF",
             "*://*/*.PDF"],
-        types: ["main_frame", "sub_frame"]
+        types: ["main_frame"]
     },
     ["blocking", "responseHeaders"]
 );
