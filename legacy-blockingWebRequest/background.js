@@ -85,7 +85,7 @@ chrome.webRequest.onHeadersReceived.addListener(
     },
     // Catch anything, and we'll match content type above.
     {
-        urls: ["*://*/*],
+        urls: ["<all_urls>"],
         types: ["main_frame"]
     },
     ["blocking", "responseHeaders"]
