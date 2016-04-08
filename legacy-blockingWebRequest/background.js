@@ -33,8 +33,7 @@ chrome.webRequest.onHeadersReceived.addListener(
         });
         return {responseHeaders: responseHeaders};
     },
-    // Rather than intercept and parse all headers for content-type (slow, but catches ~everything)
-    // we prefer to catch only PDF named files, as a faster best-effort for inline.
+    // Catch any PDF named files and rewrite attachment to inline.
     {
         urls: ["*://*/*.pdf",
             "*://*/*.Pdf",
@@ -44,6 +43,49 @@ chrome.webRequest.onHeadersReceived.addListener(
             "*://*/*.PdF",
             "*://*/*.pDF",
             "*://*/*.PDF"],
+        types: ["main_frame"]
+    },
+    ["blocking", "responseHeaders"]
+);
+
+// Handle PDFs on non .pdf URLs.
+chrome.webRequest.onHeadersReceived.addListener(
+    function(details) {
+        var responseHeaders = details.responseHeaders;
+        var contentTypeIsPDF = false;
+        var contentNotInline = true;
+        var contentDispositionPosition = 0;
+        responseHeaders.forEach(function(header, i){
+            switch(header.name.toLowerCase()) {
+                case 'content-disposition':
+                    if (header.value.indexOf('inline') === -1) {
+                      // We're not inline. Likely an attachment.
+                      contentNotInline = true;
+                      contentDispositionPosition = i;
+                    }
+                    break;
+                case 'content-type':
+                    if (header.value.indexOf('application/pdf') !== -1) {
+                        // It's a PDF! Let's note that.
+                        contentTypeIsPDF = true;
+                    }
+                    break;
+            }
+        });
+        if (contentTypeIsPDF && contentNotInline) {
+           // We are a PDF, but we're not inline. Let's set the inline header.
+           console.log('Injecting Content-Type PDF header for:', details);
+           if (header.name.toLowerCase().indexOf('content-disposition') !== -1)) {
+            details.responseHeaders[contentDispositionPosition].value = "inline";
+           } else {
+            console.warn('Unexpected error in responseHeaders for:', details);
+           }
+        }
+        return {responseHeaders: responseHeaders};
+    },
+    // Catch anything, and we'll match content type above.
+    {
+        urls: ["*://*/*],
         types: ["main_frame"]
     },
     ["blocking", "responseHeaders"]
