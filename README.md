@@ -19,7 +19,7 @@ request handler and an always in-memory background page.
 
 ## Installation
 
-Install this app from the [Chrome store](https://chrome.google.com/webstore/detail/render-pdfs-inline/mpmmilbhemhehclnkpkfepmaikiolaab).
+Install this app from the [Chrome store](https://chromewebstore.google.com/detail/render-pdfs-inline/mhigkpfinipcldigeeonlokhpdpnkelg)
 
 ## Author
 **Nick Semenkovich**
