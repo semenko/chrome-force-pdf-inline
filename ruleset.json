@@ -10,10 +10,9 @@
         { "header": "x-pdf-inline-extension", "operation": "set", "value": "rule-1" }
     ]
     },
-    "condition": {
+      "condition": {
       "responseHeaders": [
-        { "header": "content-type", "values": ["application/octet-stream"] },
-        { "header": "content-disposition", "values": ["*.pdf"] }
+        { "header": "content-disposition", "values": ["attachment*.pdf*"] }
       ],
       "resourceTypes": ["main_frame"]
     }
@@ -25,15 +24,16 @@
       "type": "modifyHeaders",
       "responseHeaders": [
         { "header": "content-disposition", "operation": "set", "value": "inline" },
-        { "header": "content-type", "operation": "set", "value": "application/pdf" },
         { "header": "x-pdf-inline-extension", "operation": "set", "value": "rule-2" }
     ]
     },
     "condition": {
       "responseHeaders": [
-        { "header": "content-type", "values": ["application/pdf"] },
-        { "header": "content-disposition", "values": ["attachment*"] }
+        { "header": "content-type", "values": ["application/pdf"] }
       ],
+	"excludedResponseHeaders": [
+	    { "header": "content-disposition", "values": ["inline"] }
+	],
       "resourceTypes": ["main_frame"]
     }
   }
