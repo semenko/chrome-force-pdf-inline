@@ -7,7 +7,7 @@
       "responseHeaders": [
         { "header": "content-disposition", "operation": "set", "value": "inline" },
         { "header": "content-type", "operation": "set", "value": "application/pdf" },
-        { "header": "x-pdf-inline-extension", "operation": "set", "value": "rule-2" }
+        { "header": "x-pdf-inline-extension", "operation": "set", "value": "rule-1" }
     ]
     },
     "condition": {
@@ -26,13 +26,13 @@
       "responseHeaders": [
         { "header": "content-disposition", "operation": "set", "value": "inline" },
         { "header": "content-type", "operation": "set", "value": "application/pdf" },
-        { "header": "x-pdf-inline-extension", "operation": "set", "value": "rule-3" }
+        { "header": "x-pdf-inline-extension", "operation": "set", "value": "rule-2" }
     ]
     },
     "condition": {
       "responseHeaders": [
         { "header": "content-type", "values": ["application/pdf"] },
-        { "header": "content-disposition", "values": ["attachment"] }
+        { "header": "content-disposition", "values": ["attachment*"] }
       ],
       "resourceTypes": ["main_frame"]
     }
