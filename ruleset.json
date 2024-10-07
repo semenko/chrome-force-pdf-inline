@@ -5,16 +5,36 @@
     "action": {
       "type": "modifyHeaders",
       "responseHeaders": [
-        { "header": "content-disposition", "operation": "set", "value": "inline" },
-        { "header": "content-type", "operation": "set", "value": "application/pdf" },
-        { "header": "x-pdf-inline-extension", "operation": "set", "value": "rule-1" }
-    ]
+        {
+          "header": "content-disposition",
+          "operation": "set",
+          "value": "inline"
+        },
+        {
+          "header": "content-type",
+          "operation": "set",
+          "value": "application/pdf"
+        },
+        {
+          "header": "x-pdf-inline-extension",
+          "operation": "set",
+          "value": "rule-1"
+        }
+      ]
     },
-      "condition": {
+    "condition": {
       "responseHeaders": [
-          { "header": "content-disposition", "values": ["attachment*.pdf", "attachment*.pdf\""] }
+        {
+          "header": "content-disposition",
+          "values": [
+            "attachment*.pdf",
+            "attachment*.pdf\""
+          ]
+        }
       ],
-      "resourceTypes": ["main_frame"]
+      "resourceTypes": [
+        "main_frame"
+      ]
     }
   },
   {
@@ -23,18 +43,38 @@
     "action": {
       "type": "modifyHeaders",
       "responseHeaders": [
-        { "header": "content-disposition", "operation": "set", "value": "inline" },
-        { "header": "x-pdf-inline-extension", "operation": "set", "value": "rule-2" }
-    ]
+        {
+          "header": "content-disposition",
+          "operation": "set",
+          "value": "inline"
+        },
+        {
+          "header": "x-pdf-inline-extension",
+          "operation": "set",
+          "value": "rule-2"
+        }
+      ]
     },
     "condition": {
       "responseHeaders": [
-        { "header": "content-type", "values": ["application/pdf"] }
+        {
+          "header": "content-type",
+          "values": [
+            "application/pdf"
+          ]
+        }
       ],
-	"excludedResponseHeaders": [
-	    { "header": "content-disposition", "values": ["inline"] }
-	],
-      "resourceTypes": ["main_frame"]
+      "excludedResponseHeaders": [
+        {
+          "header": "content-disposition",
+          "values": [
+            "inline"
+          ]
+        }
+      ],
+      "resourceTypes": [
+        "main_frame"
+      ]
     }
   }
 ]
