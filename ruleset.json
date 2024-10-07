@@ -28,7 +28,8 @@
           "header": "content-disposition",
           "values": [
             "attachment*.pdf",
-            "attachment*.pdf\""
+            "attachment*.pdf\"",
+            "attachment*.pdf\";"
           ]
         }
       ],
