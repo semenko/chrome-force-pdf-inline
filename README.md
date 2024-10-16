@@ -1,9 +1,13 @@
-chrome-force-pdf-inline
+# Chrome Extension: Don't Download PDFs
+## Formerly known as "Render PDFs Inline"
+
 =======================
 
-A Chrome extension to force PDFs to render inline (overrides Content-Disposition: attachment).
+This is a Chrome extension to force PDFs to render in the browser, instead of downloading.
 
-This prevents PDFs from saving & downloading instead of simply opening in Chrome.
+Now featuring ✨Manifest V3✨.
+
+This extension works by overriding Content-Disposition: attachment.
 
 ## Installation
 

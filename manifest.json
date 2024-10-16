@@ -1,11 +1,11 @@
 {
     "author": "Nick Semenkovich",
-    "description": "Encourage PDFs to show in the browser instead of downloading. By Nick Semenkovich <semenko@alum.mit.edu>",
+    "description": "Encourage PDFs to show in the browser instead of downloading. By Nick Semenkovich <semenko@alum.mit.edu>.",
     "manifest_version": 3,
     "background": {
         "service_worker": "service_worker.js"
     },
-    "name": "Render PDFs Inline",
+    "name": "Don't Download PDFs",
     "permissions": [
         "declarativeNetRequest", "declarativeNetRequestFeedback"
     ],
