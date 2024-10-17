@@ -1,7 +1,6 @@
 # Chrome Extension: Don't Download PDFs
 ## Formerly known as "Render PDFs Inline"
 
-=======================
 
 This is a Chrome extension to force PDFs to render in the browser, instead of downloading.
 
